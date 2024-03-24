@@ -30,15 +30,20 @@ async def start(bot, update):
         fsub = await handle_force_subscribe(bot, update)
         if fsub == 400:
             return
-    await update.reply_text(
-        text=Translation.START_TEXT.format(update.from_user.mention),
-        disable_web_page_preview=True,
+
+    # Send the photo along with the start message as thumbnail
+    photo_message = await bot.send_photo(
+        chat_id=update.chat.id,
+        photo="https://graph.org/file/3914354a76ff708b3983f.jpg",  # Replace with the actual URL of your image
+        disable_notification=True,  # Optional parameter to disable notification
+        reply_to_message_id=update.message_id,  # Reply to the start message
+        caption=Translation.START_TEXT.format(update.from_user.mention),
         reply_markup=Translation.START_BUTTONS
     )
 
-    # Send the image
-    await bot.send_photo(
+    # Set the photo message as thumbnail for the start message
+    await bot.set_thumbnail(
         chat_id=update.chat.id,
-        photo="https://graph.org/file/3914354a76ff708b3983f.jpg",  # Replace with the actual URL of your image
-        disable_notification=True  # Optional parameter to disable notification
+        message_id=update.message_id,
+        thumb=photo_message.photo.thumbnail.file_id
     )
