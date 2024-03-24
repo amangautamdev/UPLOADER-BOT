@@ -1,6 +1,3 @@
-
-
-
 import os
 import time
 import psutil
@@ -28,14 +25,16 @@ async def start(bot, update):
            f"#NEW_USER: \n\nNew User [{update.from_user.first_name}](tg://user?id={update.from_user.id}) started @{Config.BOT_USERNAME} !!"
     )
     
-    if Config.UPDATES_CHANNEL:
+        if Config.UPDATES_CHANNEL:
       fsub = await handle_force_subscribe(bot, update)
       if fsub == 400:
         return
-    await update.reply_text(
+        
+    # Send the image along with the start message
+    await bot.send_photo(
+        chat_id=update.chat.id,
+        photo="https://graph.org/file/3914354a76ff708b3983f.jpg",  # Replace with the actual URL of your image
         text=Translation.START_TEXT.format(update.from_user.mention),
         disable_web_page_preview=True,
         reply_markup=Translation.START_BUTTONS
     )
-
-
