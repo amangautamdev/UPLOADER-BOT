@@ -86,9 +86,9 @@ Check How To Make MONGODB URL or [YouTube](https://youtu.be/VudXkbirhM8?feature=
 
 - YouTube Channel : [Telegram Bots 🤖](https://youtube.com/@AmanGautamArtist?feature=shared)
 - Telegram Channel : [Aman ❤️‍🩹](https://t.me/AMAN_WORLD)
-- Telegram Group : [Anan Support 🎗️](https://t.me/opamanxworld)
-- URL Uploader Bot : [Uploader Bot V4 🚀](https://t.me/UploaderxyRobot)
-- My Tg Id : [Lisa 👑](https://t.me/LegendRobot)
+- Telegram Group : [Aman Support 🎗️](https://t.me/opamanxworld)
+- URL Uploader Bot : [Uploader Bot 🚀](https://t.me/UploaderxyRobot)
+- My Tg Id : [Aman 👑](https://t.me/LegendRobot)
 
 </b>
 </details>
