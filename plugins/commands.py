@@ -22,14 +22,15 @@ async def start(bot, update):
     await add_user_to_database(bot, update)
     await bot.send_message(
         Config.LOG_CHANNEL,
-           f"#NEW_USER: \n\nNew User [{update.from_user.first_name}](tg://user?id={update.from_user.id}) started @{Config.BOT_USERNAME} !!"
+        f"#NEW_USER: \n\nNew User [{update.from_user.first_name}](tg://user?id={update.from_user.id}) started @{Config.BOT_USERNAME} !!"
     )
-    
-        if Config.UPDATES_CHANNEL:
-      fsub = await handle_force_subscribe(bot, update)
-      if fsub == 400:
-        return
-        
+
+    # Correct indentation here
+    if Config.UPDATES_CHANNEL:
+        fsub = await handle_force_subscribe(bot, update)
+        if fsub == 400:
+            return
+
     # Send the image along with the start message
     await bot.send_photo(
         chat_id=update.chat.id,
