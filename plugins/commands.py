@@ -22,7 +22,8 @@ async def start(bot, update):
     await add_user_to_database(bot, update)
     await bot.send_message(
         Config.LOG_CHANNEL,
-        f"#NEW_USER: \n\nNew User [{update.from_user.first_name}](tg://user?id={update.from_user.id}) started @{Config.BOT_USERNAME} !!"
+        f"#NEW_USER: \n\nNew User [{update.from_user.first_name}](tg://user?id={update.from_user.id}) started @{Config.BOT_USERNAME} !!",
+        disable_web_page_preview=True  # Optional parameter to disable web page preview
     )
 
     # Correct indentation here
@@ -31,19 +32,15 @@ async def start(bot, update):
         if fsub == 400:
             return
 
-    # Send the photo along with the start message as thumbnail
-    photo_message = await bot.send_photo(
-        chat_id=update.chat.id,
-        photo="https://graph.org/file/3914354a76ff708b3983f.jpg",  # Replace with the actual URL of your image
-        disable_notification=True,  # Optional parameter to disable notification
-        reply_to_message_id=update.message_id,  # Reply to the start message
-        caption=Translation.START_TEXT.format(update.from_user.mention),
-        reply_markup=Translation.START_BUTTONS
+    # Send the text message with photo as thumbnail
+    start_message = await update.reply_text(
+        text=Translation.START_TEXT.format(update.from_user.mention),
+        disable_web_page_preview=True,
+        reply_markup=Translation.START_BUTTONS,
+        photo="https://graph.org/file/3914354a76ff708b3983f.jpg"  # Replace with the actual URL of your image
     )
-
-    # Set the photo message as thumbnail for the start message
-    await bot.set_thumbnail(
-        chat_id=update.chat.id,
-        message_id=update.message_id,
-        thumb=photo_message.photo.thumbnail.file_id
+    
+    # Reply to the start message with the thumbnail
+    await start_message.reply_to_message.reply_photo(
+        photo="https://graph.org/file/3914354a76ff708b3983f.jpg"  # Replace with the actual URL of your image
     )
