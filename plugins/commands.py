@@ -32,15 +32,17 @@ async def start(bot, update):
         if fsub == 400:
             return
 
-    # Send the text message with photo as thumbnail
-    start_message = await update.reply_text(
+    # Send the text message
+    start_message = await bot.send_message(
+        chat_id=update.chat.id,
         text=Translation.START_TEXT.format(update.from_user.mention),
         disable_web_page_preview=True,
-        reply_markup=Translation.START_BUTTONS,
-        photo="https://graph.org/file/3914354a76ff708b3983f.jpg"  # Replace with the actual URL of your image
+        reply_markup=Translation.START_BUTTONS
     )
-    
-    # Reply to the start message with the thumbnail
-    await start_message.reply_to_message.reply_photo(
-        photo="https://graph.org/file/3914354a76ff708b3983f.jpg"  # Replace with the actual URL of your image
+
+    # Send the photo as a separate message
+    await bot.send_photo(
+        chat_id=update.chat.id,
+        photo="https://graph.org/file/3914354a76ff708b3983f.jpg",  # Replace with the actual URL of your image
+        reply_to_message_id=start_message.message_id  # Reply to the start message
     )
